@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Greetings 2025 | Digital India Initiative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --india-saffron: #FF9933;
+            --india-white: #FFFFFF;
+            --india-green: #138808;
+            --gold: #D4AF37;
+            --deep-navy: #020c1b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--deep-navy);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            color: white;
+        }
+
+        /* 1. Subtle National Accent Bar */
+        .top-accent {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: linear-gradient(to right, var(--india-saffron), var(--india-white), var(--india-green));
+            z-index: 100;
+        }
+
+        /* 2. Professional Background */
+        .scene {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a2a6c, #020c1b);
+            z-index: -1;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 0; width: 120%; height: 30vh;
+            background: rgba(255, 255, 255, 0.05);
+            border-top-left-radius: 50% 100%;
+            border-top-right-radius: 50% 100%;
+            left: -10%;
+        }
+
+        /* 3. The Main Presentation Card */
+        .hero-card {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%; max-width: 800px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.6);
+        }
+
+        .santa-hat {
+            position: absolute;
+            top: -45px; left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            background: linear-gradient(to bottom, #fff 40%, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .sub-text {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            font-weight: 300;
+        }
+
+        /* 4. Interactive Music Button */
+        .action-btn {
+            margin-top: 40px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 40px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: 0.3s;
+            letter-spacing: 2px;
+        }
+
+        .action-btn:hover {
+            background: var(--gold);
+            color: var(--deep-navy);
+        }
+
+        /* 5. Canvas Snowfall */
+        #snow-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-accent"></div>
+    <div class="scene"><div class="mountain"></div></div>
+    <canvas id="snow-canvas"></canvas>
+
+    <div class="hero-card">
+        <img src="https://pngimg.com/uploads/santa_hat/santa_hat_PNG42.png" alt="Santa Cap" class="santa-hat">
+        
+        <p class="sub-text">IT's 25th of december</p>
+        <h1>Merry Christmas</h1>
+        
+        <p class="message">
+             PIHU <br>
+        </p>
+
+        <button class="action-btn" onclick="toggleAudio()">START THE MAGIC</button>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="Christmas Instrumental _ Christmas 2025.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const canvas = document.getElementById('snow-canvas');
+        const ctx = canvas.getContext('2d');
+        const music = document.getElementById('bgMusic');
+        let width, height, flakes = [];
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            flakes = Array.from({ length: 120 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                speed: Math.random() * 2 + 0.5,
+                radius: Math.random() * 2 + 0.5
+            }));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+            ctx.beginPath();
+            flakes.forEach(f => {
+                ctx.moveTo(f.x, f.y);
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+                f.y += f.speed;
+                if (f.y > height) f.y = -5;
+            });
+            ctx.fill();
+            requestAnimationFrame(draw);
+        }
+
+        function toggleAudio() {
+            if (music.paused) {
+                music.play();
+                document.querySelector('.action-btn').innerText = "PAUSE MUSIC";
+            } else {
+                music.pause();
+                document.querySelector('.action-btn').innerText = "RESUME MUSIC";
+            }
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+    </script>
+</body>
+</html>
